@@ -4,6 +4,20 @@
 
 ---
 
+## Development Process Summary
+
+The agentic system development cycle is **iterative** — Build and Analyze feed each other continuously.
+
+```mermaid
+flowchart LR
+    B["🔨 BUILD\n─────────────\n• Build end-to-end system\n• Improve individual component"]
+    A["🔍 ANALYZE\n─────────────\n• Examine outputs & traces\n• Build evals; compute metrics\n• Error analysis\n• Component-level evals"]
+
+    B <--> A
+```
+
+---
+
 ## Research Agent Pipeline
 
 ```mermaid
