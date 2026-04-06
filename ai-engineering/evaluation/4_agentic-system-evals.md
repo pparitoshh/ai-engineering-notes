@@ -37,8 +37,9 @@ flowchart LR
 
 ## Why Component-Level Evaluation?
 
-- End-to-end eval is **expensive and time-consuming**
-- Hard to pinpoint *which* component caused a failure
+- **Overall (end-to-end) eval is important** and should always be in place
+- Component-level eval **complements** the overall eval — it doesn't replace it
+- End-to-end eval alone is expensive and time-consuming, and hard to pinpoint *which* component failed
 - Component eval gives **clearer signal** for specific errors — avoids noise from the rest of the system
 - More efficient: focused team can iterate on smaller, targeted problems faster
 
