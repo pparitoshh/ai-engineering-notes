@@ -118,3 +118,23 @@ flowchart LR
 | Hub & Spoke | Manager + sub-agents | Medium | Medium | Coordinated delegation |
 | Deeper Hierarchy | Tree of agents | Medium | High | Large, complex tasks |
 | All-to-All | Fully connected | High | Very High | Collaborative tasks |
+
+---
+
+## Key Trade-off: Flexibility vs Control
+
+> **Increased flexibility allows broader task coverage but reduces predictability and control over agent actions and outcomes.**
+
+- More flexible patterns (all-to-all, deeper hierarchy) = agents can handle a wider range of tasks
+- BUT: harder to predict what agents will do, harder to debug, less direct developer control
+- Simpler patterns (linear) = more predictable and controllable, but narrower task coverage
+- **Common mistake:** thinking flexibility *improves* developer oversight — it actually does the opposite
+
+---
+
+## Quiz Insight: Hierarchical vs All-to-All
+
+When **one agent coordinates the work of others** (e.g. Code Reviewer directing Documentation Writer and Deployment Agent) → that is **Hierarchical communication**, not all-to-all.
+
+- All-to-all = every agent talks to every other agent freely (no single coordinator)
+- Hierarchical = one agent acts as manager/coordinator directing sub-agents
