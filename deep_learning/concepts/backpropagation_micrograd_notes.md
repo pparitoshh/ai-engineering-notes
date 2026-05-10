@@ -1,4 +1,4 @@
-# ML Interview Notes: Backpropagation (Micrograd From Scratch)
+# Backpropagation (Micrograd From Scratch)
 
 **Last Updated**: 2026-05-10
 **Source**: Andrej Karpathy — Micrograd from Scratch (Colab walkthrough)
