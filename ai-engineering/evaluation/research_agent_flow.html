@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Research Agent Flow Diagram</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8f9fb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+    h1 {
+      font-size: 22px;
+      color: #1a1a2e;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 13px;
+      color: #666;
+      margin-bottom: 40px;
+    }
+
+    /* ── Main pipeline row ── */
+    .pipeline {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: nowrap;
+    }
+
+    .node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      text-align: center;
+      min-width: 90px;
+      position: relative;
+    }
+    .node .label {
+      font-size: 11px;
+      font-weight: 400;
+      margin-top: 4px;
+      color: #555;
+    }
+
+    /* Node colour themes */
+    .node-input   { background:#e8f4fd; border:2px solid #90caf9; color:#0d47a1; }
+    .node-llm     { background:#fff8e1; border:2px solid #ffca28; color:#e65100; }
+    .node-tool    { background:#e8f5e9; border:2px solid #66bb6a; color:#1b5e20; }
+    .node-output  { background:#f3e5f5; border:2px solid #ba68c8; color:#4a148c; }
+
+    /* Arrow */
+    .arrow {
+      font-size: 22px;
+      color: #90a4ae;
+      padding: 0 4px;
+      user-select: none;
+    }
+
+    /* ── Tool badges floating above nodes ── */
+    .with-tools {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .tools-box {
+      display: flex;
+      gap: 6px;
+    }
+    .tool-badge {
+      background: #e8f5e9;
+      border: 1.5px dashed #66bb6a;
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #2e7d32;
+    }
+    .tool-connector {
+      width: 1.5px;
+      height: 14px;
+      background: #90a4ae;
+      margin: 0 auto;
+    }
+
+    /* ── Eval callout ── */
+    .eval-section {
+      margin-top: 50px;
+      width: 100%;
+      max-width: 820px;
+    }
+    .eval-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #c62828;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap-8px;
+    }
+    .eval-cards {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .eval-card {
+      background: #fff;
+      border: 2px solid #ef9a9a;
+      border-radius: 10px;
+      padding: 14px 18px;
+      flex: 1;
+      min-width: 220px;
+    }
+    .eval-card h3 {
+      font-size: 13px;
+      color: #c62828;
+      margin-bottom: 6px;
+    }
+    .eval-card ul {
+      padding-left: 16px;
+      font-size: 12px;
+      color: #444;
+      line-height: 1.8;
+    }
+
+    /* ── Red highlight border around web search ── */
+    .highlight-border {
+      outline: 3px solid #e53935;
+      outline-offset: 3px;
+      border-radius: 10px;
+    }
+
+    /* ── Source note ── */
+    .source {
+      margin-top: 30px;
+      font-size: 11px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Research Agent — Flow Diagram</h1>
+  <p class="subtitle">Source: DeepLearning.AI · Andrew Ng &nbsp;|&nbsp; Component-Level Evaluation</p>
+
+  <div class="pipeline">
+
+    <!-- User Query -->
+    <div class="node node-input">
+      User Query
+    </div>
+
+    <div class="arrow">→</div>
+
+    <!-- LLM 1: Search Web -->
+    <div class="with-tools">
+      <div class="tools-box">
+        <div class="tool-badge">web search</div>
+      </div>
+      <div class="tool-connector"></div>
+      <div class="node node-llm">
+        LLM
+        <span class="label">Search web</span>
+      </div>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <!-- Web Search tool (highlighted for eval) -->
+    <div class="highlight-border">
+      <div class="node node-tool">
+        Web Search
+        <span class="label">⬆ Evaluate this</span>
+      </div>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <!-- LLM 2: Fetch best sources -->
+    <div class="with-tools">
+      <div class="tools-box">
+        <div class="tool-badge">web fetch</div>
+        <div class="tool-badge">PDF→text</div>
+      </div>
+      <div class="tool-connector"></div>
+      <div class="node node-llm">
+        LLM
+        <span class="label">Fetch 5 best sources</span>
+      </div>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <!-- Web Fetch tool -->
+    <div class="node node-tool">
+      Web Fetch
+    </div>
+
+    <div class="arrow">→</div>
+
+    <!-- LLM 3: Write essay -->
+    <div class="node node-llm">
+      LLM
+      <span class="label">Write essay draft</span>
+    </div>
+
+    <div class="arrow">→</div>
+
+    <!-- Output -->
+    <div class="node node-output">
+      📄 Essay
+      <span class="label">Final Output</span>
+    </div>
+
+  </div>
+
+  <!-- Eval section -->
+  <div class="eval-section">
+    <div class="eval-title">🔴 &nbsp;Component Eval: Web Search Tool</div>
+    <div class="eval-cards">
+
+      <div class="eval-card">
+        <h3>Step 1 — Gold Standard</h3>
+        <ul>
+          <li>Create a list of gold standard web resources for test queries</li>
+          <li>These are the "correct" sources the search should return</li>
+        </ul>
+      </div>
+
+      <div class="eval-card">
+        <h3>Step 2 — Metric</h3>
+        <ul>
+          <li>Count how many results match gold standard</li>
+          <li>Calculate <strong>F1-score</strong> (precision + recall)</li>
+        </ul>
+      </div>
+
+      <div class="eval-card">
+        <h3>Step 3 — Tune Hyperparams</h3>
+        <ul>
+          <li>Search engine provider</li>
+          <li>Top-k results returned</li>
+          <li>Date range filter</li>
+          <li>Track metric as you vary each</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <p class="source">Andrew Ng · DeepLearning.AI · Agentic AI Systems Course</p>
+
+</body>
+</html>

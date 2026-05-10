@@ -12,6 +12,7 @@ A structured, open-source knowledge base for AI Engineering — built from readi
 |--------|-------------|--------|
 | [AI Engineering](./ai-engineering/) | Notes from the *AI Engineering* book — LLMs, evaluation, RAG, fine-tuning | Active |
 | [Agentic AI](./agentic-ai/) | Agent frameworks, tool use, multi-agent systems, planning | Coming soon |
+| [Deep Learning](./deep_learning/) | Backprop, optimizers, neural net internals — built from scratch | Active |
 
 ---
 
@@ -28,6 +29,10 @@ ai-engineering-notes/
 │   ├── concepts/         # Agent concepts, frameworks
 │   ├── resources/
 │   └── code/
+├── deep_learning/
+│   ├── concepts/         # Backprop, autograd, optimizers
+│   ├── code/             # From-scratch implementations
+│   └── resources/
 ```
 
 ---
